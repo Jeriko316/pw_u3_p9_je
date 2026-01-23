@@ -11,6 +11,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Response;
 import materia.application.EstudianteService;
 import materia.domain.Estudiante;
 
@@ -34,14 +35,16 @@ public class EstudianteResource {
  
     @POST
     @Path("/crear")
-    public void guardar(Estudiante estu){
+    public Response guardar(Estudiante estu){
         this.estudianteService.crear(estu);
+        return Response.status(Response.Status.CREATED).entity(estu).build();
     }
  
     @PUT
     @Path("/actualizar/{id}")
-    public void actualizar(@PathParam("id") Integer id, Estudiante estu){
+    public Response actualizar(@PathParam("id") Integer id, Estudiante estu){
         this.estudianteService.actualizar(id, estu);
+        return Response.status(209).entity(null).build();
     }
  
     @PATCH
