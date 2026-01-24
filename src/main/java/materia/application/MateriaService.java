@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import materia.domain.Estudiante;
 import materia.domain.Materia;
 import materia.infraestructure.MateriaRepository;
 
@@ -31,19 +32,19 @@ public class MateriaService {
     public void actualizar(Integer id, Materia materia){
         Materia mat = this.consultarPorId(id);
         // actualizar con los valores recibidos
-        mat.nombre = materia.nombre;
-        mat.creditos = materia.creditos;
+        mat.setNombre(mat.getNombre());
+        mat.setCreditos(mat.getCreditos());
     }
 
 
     @Transactional
     public void actualizarParcial(Integer id, Materia materia){
         Materia mat = this.consultarPorId(id);
-    if (materia.nombre != null) {
-        mat.nombre = materia.nombre;
+    if (materia.getNombre() != null) {
+        mat.setNombre(mat.getNombre());
     }
-    if (materia.creditos != null) {
-        mat.creditos = materia.creditos;
+    if (materia.getCreditos() != null) {
+        mat.setCreditos(mat.getCreditos());
     }
     }
 
@@ -54,11 +55,12 @@ public class MateriaService {
 
  
     public List<Materia> buscarPorNombre(String nombre){
-        return this.materiaRepository.seleccionarPorNombre(nombre);
+        return this.materiaRepository.find("nombre=?1", nombre).list();
     }
 
+
     public List<Materia> buscarPorCreditos(String creditos){
-        return this.materiaRepository.seleccionarPorCreditos(creditos);
+        return this.materiaRepository.find("creditos=?1",creditos).list();
     }
 
     

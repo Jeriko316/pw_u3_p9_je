@@ -9,10 +9,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import materia.domain.Materia;
 
-@ApplicationScoped// Si no se proporciona nombre, devolver todas
+@ApplicationScoped
 public class MateriaRepository implements PanacheRepository<Materia> {
 
-	@Inject
+	/*@Inject
 	EntityManager em;
 
 	// Métodos usando Panache
@@ -25,7 +25,7 @@ public class MateriaRepository implements PanacheRepository<Materia> {
 	}*/
 
 
-	public List<Materia> seleccionarPorNombre(String nombre) {
+	/*public List<Materia> seleccionarPorNombre(String nombre) {
 		
 		if (nombre == null || nombre.trim().isEmpty()) {
 			return listAll();
@@ -41,6 +41,6 @@ public class MateriaRepository implements PanacheRepository<Materia> {
 		TypedQuery<Materia> myQuery = this.em.createQuery("SELECT m FROM Materia m WHERE m.creditos = :creditos", Materia.class);
 		myQuery.setParameter("creditos", creditos);
 		return myQuery.getResultList();
-	}
+	}*/
 
 }

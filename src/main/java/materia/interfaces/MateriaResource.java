@@ -1,5 +1,6 @@
 package materia.interfaces;
 
+import java.io.ObjectInputFilter.Status;
 import java.util.List;
 
 import jakarta.inject.Inject;
@@ -10,7 +11,9 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import materia.application.MateriaService;
 import materia.domain.Materia;
 // import net.bytebuddy.asm.Advice.Return; // eliminado: import innecesario
@@ -23,12 +26,14 @@ public class MateriaResource {
 
     @GET
     @Path("")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Materia> buscarTodos(){
         return this.materiaService.listaTodos();
     }
 
     @GET
     @Path("/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Materia> buscarPorNombre(@PathParam("nombre") String nombre){
         return this.materiaService.buscarPorNombre(nombre);
     }
@@ -48,8 +53,9 @@ public class MateriaResource {
 
     @POST
     @Path("")
-    public void guardar(Materia materia){
+    public Response guardar(Materia materia){
         this.materiaService.crear(materia);
+        return Response.status(Response.Status.CREATED).entity(materia).build();
     }
 
     @PUT
@@ -61,8 +67,9 @@ public class MateriaResource {
 
     @PATCH
     @Path("/{id}")
-    public void actualizarParcial(@PathParam("id") Integer id, Materia materia){
+    public Response actualizarParcial(@PathParam("id") Integer id, Materia materia){
         this.materiaService.actualizarParcial(id, materia);
+        return Response.status(209).entity(null).build();
     }
 
     @DELETE
