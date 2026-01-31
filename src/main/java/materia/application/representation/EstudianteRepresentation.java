@@ -1,6 +1,7 @@
 package materia.application.representation;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class EstudianteRepresentation {
 
@@ -10,6 +11,7 @@ public class EstudianteRepresentation {
     private LocalDateTime fechaNacimiento;
     private String provincia;
     public String genero;
+    public List<LinkDto> links;
     public Long getId() {
         return id;
     }
