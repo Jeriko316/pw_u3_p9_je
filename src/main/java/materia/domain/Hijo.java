@@ -1,7 +1,7 @@
 package materia.domain;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import jakarta.json.bind.annotation.JsonbTransient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +25,7 @@ public class Hijo extends PanacheEntityBase{
 
     @ManyToOne(fetch = FetchType.LAZY) //mapeo de entidades
     @JoinColumn(name = "estudiante_id") 
-    @JsonbTransient
+    @JsonIgnore
     public Estudiante estudiante;
 
 }

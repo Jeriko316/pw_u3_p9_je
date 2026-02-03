@@ -117,12 +117,6 @@ public class EstudianteResource {
         return this.estudianteService.buscarPorProvincia(provincia, genero);
     }
 
-    @GET
-    @Path("/{id}/hijos")
-    public List<HijoRepresentation> buscarPorIdEstudiante(@PathParam("id") Integer id){
-        return this.hijoService.buscarPorIdEstudiante(id);
-    }
-
      @GET
     @Path("/{id}/hijos")
     @Produces(MediaType.APPLICATION_JSON)
